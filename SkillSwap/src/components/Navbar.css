@@ -1,0 +1,124 @@
+.navbar-container {
+    background-color: white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+}
+
+.navbar-logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: #4f46e5;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+}
+
+.logo-swap {
+    color: #10b981;
+}
+
+.navbar-links-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-link {
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    color: #4b5563;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.nav-link:hover {
+    color: #4f46e5;
+    background-color: #f5f3ff;
+}
+
+.nav-link-active {
+    background-color: #4f46e5;
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+}
+
+/* --- Logged Out Auth Buttons --- */
+.auth-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background-color 0.15s, color 0.15s, box-shadow 0.15s;
+}
+
+.auth-login {
+    color: #4f46e5;
+    border: 1px solid #4f46e5;
+    background-color: transparent;
+    margin-left: 16px;
+}
+
+.auth-login:hover {
+    background-color: #f5f3ff;
+}
+
+.auth-signup {
+    background-color: #10b981;
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
+}
+
+.auth-signup:hover {
+    background-color: #059669;
+}
+
+/* --- Notifications --- */
+.notifications-icon-container {
+    position: relative;
+}
+
+.notifications-button {
+    padding: 8px;
+    border-radius: 9999px;
+    color: #4b5563;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.notifications-button:hover {
+    background-color: #f5f3ff;
+    color: #4f46e5;
+}
+
+.notifications-svg {
+    width: 24px;
+    height: 24px;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: white;
+    background-color: #ef4444;
+    border-radius: 9999px;
+    transform: translate(50%, -50%);
+}

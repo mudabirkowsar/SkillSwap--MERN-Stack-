@@ -1,0 +1,108 @@
+.profile-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #4f46e5;
+    border-bottom: 2px solid #eef2ff;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.page-description {
+    color: #6b7280;
+    margin-bottom: 30px;
+}
+
+.profile-section {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #f3f4f6;
+    border-radius: 8px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 15px;
+}
+
+.skill-list-editor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+.offer-color { border: 1px solid #dcfce7; background-color: #f7fee7; }
+.desire-color { border: 1px solid #e0e7ff; background-color: #eff6ff; }
+
+.skill-tag {
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #60a5fa; /* Blue default */
+    color: white;
+}
+
+.offer-color .skill-tag { background-color: #34d399; } /* Green */
+.desire-color .skill-tag { background-color: #60a5fa; } /* Blue */
+
+
+.add-skill-button {
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #4f46e5;
+    background-color: #e0e7ff;
+    border: 1px dashed #a5b4fc;
+    transition: background-color 0.2s;
+}
+
+.add-skill-button:hover {
+    background-color: #c7d2fe;
+}
+
+.info-form label {
+    display: block;
+    font-weight: 500;
+    color: #4b5563;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.info-form input,
+.info-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.save-button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background-color: #10b981;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.save-button:hover {
+    background-color: #059669;
+}
