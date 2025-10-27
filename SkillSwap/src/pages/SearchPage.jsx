@@ -57,7 +57,7 @@ const SearchPage = () => (
         <div className="search-container">
             <h2 className="page-title">🔍 Find Skills to Learn</h2>
             <p className="page-description">Browse or search hundreds of skills offered by our community members.</p>
-            
+
             <div className="search-form-group">
                 <input type="text" placeholder="Search for skills: React, Spanish, Photography..." className="search-input" />
                 <button className="search-button">Search</button>

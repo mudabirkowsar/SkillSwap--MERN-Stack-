@@ -13,7 +13,7 @@ const Navbar = ({ isLoggedIn, onLogout, onLogin }) => {
 
     // Handler for Login/Signup buttons that also changes state
     const handleAuthAction = (path) => {
-        onLogin(); // Simulate login state change
+        // onLogin(); // Simulate login state change
         navigate(path); // Navigate to the correct logged-in route
     }
 
@@ -63,13 +63,13 @@ const Navbar = ({ isLoggedIn, onLogout, onLogin }) => {
 
                             {/* Log In and Sign Up buttons simulate login/navigation */}
                             <button
-                                onClick={() => handleAuthAction('/find-skills')}
+                                onClick={() => handleAuthAction('/login')}
                                 className="auth-button auth-login"
                             >
                                 Log In
                             </button>
                             <button
-                                onClick={() => handleAuthAction('/find-skills')}
+                                onClick={() => handleAuthAction('/signup')}
                                 className="auth-button auth-signup"
                             >
                                 Sign Up

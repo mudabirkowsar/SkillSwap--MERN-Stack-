@@ -11,6 +11,8 @@ import MySwapsPage from './pages/MySwapsPage';
 import ProfilePage from './pages/ProfilePage';
 import './index.css';
 import Footer from './pages/Footer';
+import LoginPage from './pages/auth/LoginPage';
+import SignupPage from './pages/auth/SignupPage';
 
 // Note: In a real-world app, you would wrap the Logged-In routes 
 // with a ProtectedRoute component to enforce authentication.
@@ -25,6 +27,10 @@ export default function App() {
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
+
+  const handleSignup = ()=> {
+    setIsLoggedIn(true);
+  }
 
   return (
     <BrowserRouter>
@@ -43,6 +49,11 @@ export default function App() {
             <Route path="/how-it-works" element={<HowItWorksPage />} />
             {/* Public preview of the marketplace */}
             <Route path="/browse-skills" element={<SearchPage />} />
+
+            {/* auth routes  */}
+
+            <Route path='/login' element={<LoginPage onLogin={handleLogin} />} />
+            <Route path='/signup' element={<SignupPage onSignup={handleSignup} />} />
 
             {/* --- Logged-In Routes (The actual application) --- */}
             <Route path="/find-skills" element={<SearchPage />} />
