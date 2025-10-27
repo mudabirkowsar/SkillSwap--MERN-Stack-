@@ -10,6 +10,7 @@ import SearchPage from './pages/SearchPage';
 import MySwapsPage from './pages/MySwapsPage';
 import ProfilePage from './pages/ProfilePage';
 import './index.css';
+import Footer from './pages/Footer';
 
 // Note: In a real-world app, you would wrap the Logged-In routes 
 // with a ProtectedRoute component to enforce authentication.
@@ -53,6 +54,7 @@ export default function App() {
             <Route path="*" element={<h1 style={{ textAlign: 'center', marginTop: '50px' }}>404 Page Not Found</h1>} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </BrowserRouter>
   );
