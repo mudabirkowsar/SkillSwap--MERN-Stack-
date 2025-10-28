@@ -58,7 +58,8 @@
 /* --- Main Content Grid --- */
 .main-content-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr; /* Content 2/3, Sidebar 1/3 */
+    grid-template-columns: 2fr 1fr;
+    /* Content 2/3, Sidebar 1/3 */
     gap: 40px;
 }
 
@@ -76,7 +77,8 @@
     color: var(--color-indigo);
     margin-bottom: 15px;
     padding-bottom: 5px;
-    border-bottom: 2px solid #e0e7ff; /* Light indigo line */
+    border-bottom: 2px solid #e0e7ff;
+    /* Light indigo line */
 }
 
 .detail-section p {
@@ -128,14 +130,16 @@
 }
 
 .skill-tag:hover {
-    background-color: #e0f2fe; /* Light blue hover */
+    background-color: #e0f2fe;
+    /* Light blue hover */
     color: var(--color-indigo-dark);
 }
 
 /* --- Mentor Sidebar --- */
 .mentor-sidebar {
     position: sticky;
-    top: 20px; /* Offset from the top */
+    top: 20px;
+    /* Offset from the top */
     height: fit-content;
 }
 
@@ -153,7 +157,8 @@
 }
 
 .mentor-avatar {
-    font-size: 5rem; /* Large icon for avatar placeholder */
+    font-size: 5rem;
+    /* Large icon for avatar placeholder */
     color: var(--color-indigo);
 }
 
@@ -222,7 +227,8 @@
 }
 
 .initiate-swap-btn:hover {
-    background-color: #059669; /* Darker emerald */
+    background-color: #059669;
+    /* Darker emerald */
     transform: translateY(-2px);
 }
 
@@ -244,33 +250,42 @@
 }
 
 /* Icon spacing in buttons */
-.initiate-swap-btn i, .message-mentor-btn i {
+.initiate-swap-btn i,
+.message-mentor-btn i {
     margin-right: 8px;
 }
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 992px) {
     .main-content-grid {
-        grid-template-columns: 1fr; /* Stack content and sidebar */
+        grid-template-columns: 1fr;
+        /* Stack content and sidebar */
         gap: 50px;
     }
+
     .skill-detail-container {
         padding: 30px;
     }
+
     .mentor-sidebar {
-        position: static; /* Remove sticky behavior on smaller screens */
+        position: static;
+        /* Remove sticky behavior on smaller screens */
     }
+
     .skill-title {
         font-size: 32px;
     }
 }
+
 @media (max-width: 576px) {
     .skill-detail-container {
         padding: 20px;
     }
+
     .section-heading {
         font-size: 20px;
     }
+
     .mentor-avatar {
         font-size: 4rem;
     }
@@ -398,6 +413,7 @@
         transform: translateY(30px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
