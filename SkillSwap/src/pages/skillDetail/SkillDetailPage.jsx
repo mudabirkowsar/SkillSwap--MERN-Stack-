@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { skillData } from '../../data/data';
+import SwapRequestModal from '../requestPages/SwapRequestModal'; // <-- NEW IMPORT
 import './SkillDetailPage.css';
 
 const SkillDetailPage = () => {
@@ -9,6 +10,7 @@ const SkillDetailPage = () => {
     const skill = skillData.find(s => s.id === idToFind);
 
     const [showChatBox, setShowChatBox] = useState(false);
+    const [showSwapModal, setShowSwapModal] = useState(false); // <-- NEW STATE
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
 
@@ -37,6 +39,11 @@ const SkillDetailPage = () => {
         const newMsg = { text: newMessage, sender: 'You', time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) };
         setMessages(prev => [...prev, newMsg]);
         setNewMessage('');
+        // Optional: Simulate a mentor response after a short delay
+        setTimeout(() => {
+            const mentorMsg = { text: `Thanks for the message! I'm interested in your swap idea.`, sender: skill.mentor.name, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) };
+            setMessages(prev => [...prev, mentorMsg]);
+        }, 3000);
     };
 
     const handleCall = () => {
@@ -46,6 +53,14 @@ const SkillDetailPage = () => {
     const handleVideoChat = () => {
         alert(`🎥 Starting video chat with ${skill.mentor.name}...`);
     };
+    
+    // <-- NEW HANDLER FUNCTION -->
+    const handleSwapSubmit = (requestData) => {
+        console.log("Swap Request Submitted:", requestData);
+        // alert(`Request to swap skills with ${requestData.mentor} has been sent successfully! We'll notify you when they respond.`);
+    };
+    // <---------------------------->
+
 
     return (
         <div className="skill-detail-page-wrapper">
@@ -119,7 +134,10 @@ const SkillDetailPage = () => {
                                 <p className="mentor-bio">{skill.mentor.bio}</p>
                             </section>
 
-                            <button className="initiate-swap-btn">
+                            <button 
+                                className="initiate-swap-btn"
+                                onClick={() => setShowSwapModal(true)} // <-- MODAL TOGGLE
+                            >
                                 <i className="fas fa-exchange-alt"></i> Initiate Swap Request
                             </button>
 
@@ -168,8 +186,16 @@ const SkillDetailPage = () => {
                         </div>
                     </div>
                 )}
-
             </div>
+            
+            {/* --- Swap Request Modal (Conditional Rendering) --- */}
+            {showSwapModal && (
+                <SwapRequestModal
+                    mentorName={skill.mentor.name}
+                    onClose={() => setShowSwapModal(false)}
+                    onSubmit={handleSwapSubmit}
+                />
+            )}
         </div>
     );
 };
