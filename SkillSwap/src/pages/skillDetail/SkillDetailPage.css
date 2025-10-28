@@ -275,3 +275,131 @@
         font-size: 4rem;
     }
 }
+
+/* --- Chat Box Styles --- */
+.chatbox-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    height: 500px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9999;
+    animation: slideUp 0.3s ease;
+}
+
+.chatbox-header {
+    background: var(--color-indigo);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    font-weight: 600;
+}
+
+.chatbox-header i {
+    margin-right: 6px;
+}
+
+.chatbox-options button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.chatbox-options button:hover {
+    color: var(--color-amber);
+}
+
+.chatbox-messages {
+    flex: 1;
+    padding: 10px 15px;
+    overflow-y: auto;
+    background: var(--color-background-soft);
+}
+
+.no-messages {
+    color: var(--color-text-medium);
+    font-size: 14px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+}
+
+.chat-message.sent {
+    align-self: flex-end;
+    background-color: var(--color-emerald);
+    color: white;
+    border-radius: 15px 15px 0 15px;
+    padding: 8px 12px;
+}
+
+.chat-message.received {
+    align-self: flex-start;
+    background-color: #e5e7eb;
+    color: var(--color-text-dark);
+    border-radius: 15px 15px 15px 0;
+    padding: 8px 12px;
+}
+
+.message-time {
+    font-size: 11px;
+    color: #6b7280;
+    text-align: right;
+    margin-top: 2px;
+}
+
+.chatbox-input {
+    display: flex;
+    border-top: 1px solid var(--color-border-light);
+    background: white;
+    height: 50px;
+}
+
+.chatbox-input input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    outline: none;
+}
+
+.chatbox-input button {
+    background-color: var(--color-indigo);
+    border: none;
+    color: white;
+    padding: 0 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.chatbox-input button:hover {
+    background-color: var(--color-indigo-dark);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
