@@ -1,0 +1,243 @@
+/* Global Color Palette (consistent with HomePage) */
+:root {
+    --color-indigo: #4f46e5;
+    --color-indigo-dark: #3730a3;
+    --color-emerald: #10b981;
+    --color-blue: #3b82f6;
+    --color-amber: #f59e0b;
+    --color-red: #ef4444; /* Added for error/warning */
+    --color-text-dark: #1f2937;
+    --color-text-medium: #4b5563;
+    --color-text-light: #6b7280;
+    --color-background-light: #ffffff;
+    --color-background-soft: #f8fafc; /* Lighter background for unread */
+    --color-gradient-start: #e0f2fe; /* Light sky blue */
+    --color-gradient-end: #f0f4f8; /* Very light gray-blue */
+    --color-border-light: #e5e7eb;
+}
+
+/* --- Page Wrapper --- */
+.notification-page-wrapper {
+    background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
+    padding: 60px 20px;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+/* --- Notification Container --- */
+.notification-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: var(--color-background-light);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-border-light);
+}
+
+.notification-page-title {
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--color-text-dark);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.notification-page-description {
+    color: var(--color-text-medium);
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 17px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+/* --- Actions (Mark All as Read) --- */
+.notification-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+    padding-right: 10px; /* Align with dismiss button */
+}
+
+.mark-all-read-btn {
+    background-color: transparent;
+    border: 1px solid var(--color-blue);
+    color: var(--color-blue);
+    padding: 8px 15px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mark-all-read-btn:hover {
+    background-color: var(--color-blue);
+    color: white;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.no-notifications {
+    font-style: italic;
+    color: var(--color-text-light);
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* --- Notification List --- */
+.notification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* --- Notification Card --- */
+.notification-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-background-soft); /* Default for unread */
+    padding: 18px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid transparent; /* Accent border for notification type */
+    transition: all 0.3s ease-out;
+    position: relative;
+}
+
+.notification-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.notification-card.read {
+    background-color: var(--color-background-light); /* Lighter for read notifications */
+    opacity: 0.8;
+    border-left-color: var(--color-border-light); /* Subtle border for read */
+}
+
+/* Notification Types Borders */
+.notification-card.success:not(.read) { border-left-color: var(--color-emerald); }
+.notification-card.info:not(.read) { border-left-color: var(--color-blue); }
+.notification-card.warning:not(.read) { border-left-color: var(--color-amber); }
+.notification-card.error:not(.read) { border-left-color: var(--color-red); }
+
+
+/* --- Notification Icon --- */
+.notification-icon-wrapper {
+    flex-shrink: 0;
+    margin-right: 15px;
+    width: 35px; /* Fixed width for alignment */
+    text-align: center;
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+    color: var(--color-text-light); /* Default icon color */
+}
+
+/* Notification Types Icon Colors */
+.notification-card.success .notification-icon { color: var(--color-emerald); }
+.notification-card.info .notification-icon { color: var(--color-blue); }
+.notification-card.warning .notification-icon { color: var(--color-amber); }
+.notification-card.error .notification-icon { color: var(--color-red); }
+
+
+/* --- Notification Content --- */
+.notification-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-message {
+    font-size: 16px;
+    color: var(--color-text-dark);
+    margin-bottom: 5px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.notification-card.read .notification-message {
+    color: var(--color-text-medium);
+    font-weight: 400;
+}
+
+.notification-timestamp {
+    font-size: 13px;
+    color: var(--color-text-light);
+}
+
+/* --- Dismiss Button --- */
+.dismiss-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    margin-left: 15px;
+}
+
+.dismiss-btn:hover {
+    color: var(--color-red);
+    background-color: rgba(239, 68, 68, 0.1);
+    transform: scale(1.1);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .notification-container {
+        padding: 30px 15px;
+    }
+    .notification-page-title {
+        font-size: 30px;
+    }
+    .notification-page-description {
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+    .notification-actions {
+        justify-content: center;
+        margin-bottom: 25px;
+        padding-right: 0;
+    }
+    .mark-all-read-btn {
+        font-size: 13px;
+        padding: 7px 12px;
+    }
+    .notification-card {
+        flex-wrap: wrap; /* Allow content to wrap */
+        padding: 15px;
+    }
+    .notification-icon-wrapper {
+        margin-right: 10px;
+        width: 30px;
+    }
+    .notification-icon {
+        font-size: 1.3rem;
+    }
+    .notification-message {
+        font-size: 15px;
+        margin-bottom: 3px;
+    }
+    .notification-timestamp {
+        font-size: 12px;
+        width: 100%; /* Push timestamp to new line if needed */
+        order: 3; /* Order it after message and button */
+        margin-top: 5px;
+    }
+    .dismiss-btn {
+        margin-left: auto; /* Push button to right if content wraps */
+        align-self: flex-start; /* Align dismiss button to top when wrapped */
+    }
+}
