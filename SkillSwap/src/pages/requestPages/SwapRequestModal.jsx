@@ -9,7 +9,6 @@ const SwapRequestModal = ({ mentorName, onClose, onSubmit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         if (proposedSkill.trim() === '' || requestMessage.trim() === '') {
             setNotification({
                 type: 'error',
@@ -33,14 +32,14 @@ const SwapRequestModal = ({ mentorName, onClose, onSubmit }) => {
                 onSubmit(requestData);
                 setNotification({
                     type: 'success',
-                    message: `✅ Swap request sent successfully to ${mentorName}!`,
+                    message: `Swap request sent successfully to ${mentorName}!`,
                 });
                 setProposedSkill('');
                 setRequestMessage('');
             } else {
                 setNotification({
                     type: 'error',
-                    message: '❌ Failed to send swap request. Please try again later.',
+                    message: 'Failed to send swap request. Please try again later.',
                 });
             }
 

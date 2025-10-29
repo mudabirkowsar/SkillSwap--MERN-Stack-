@@ -53,11 +53,10 @@ const SkillDetailPage = () => {
     const handleVideoChat = () => {
         alert(`🎥 Starting video chat with ${skill.mentor.name}...`);
     };
-    
+
     // <-- NEW HANDLER FUNCTION -->
     const handleSwapSubmit = (requestData) => {
         console.log("Swap Request Submitted:", requestData);
-        // alert(`Request to swap skills with ${requestData.mentor} has been sent successfully! We'll notify you when they respond.`);
     };
     // <---------------------------->
 
@@ -134,7 +133,7 @@ const SkillDetailPage = () => {
                                 <p className="mentor-bio">{skill.mentor.bio}</p>
                             </section>
 
-                            <button 
+                            <button
                                 className="initiate-swap-btn"
                                 onClick={() => setShowSwapModal(true)} // <-- MODAL TOGGLE
                             >
@@ -187,7 +186,7 @@ const SkillDetailPage = () => {
                     </div>
                 )}
             </div>
-            
+
             {/* --- Swap Request Modal (Conditional Rendering) --- */}
             {showSwapModal && (
                 <SwapRequestModal
