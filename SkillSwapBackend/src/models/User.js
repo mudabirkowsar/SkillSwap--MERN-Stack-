@@ -6,7 +6,7 @@ const userSchema = mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     swapGoal: { type: String, default: 'Open to learning new skills.' },
-    skillsOffered: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Skill' }], 
+    skillsOffered: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Skill' }],
 }, { timestamps: true });
 
 // Method to compare entered password with hashed password
