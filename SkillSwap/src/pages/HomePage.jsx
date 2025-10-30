@@ -1,5 +1,6 @@
 import React from 'react';
 import './HomePage.css'; 
+import ChatBot from './chatBot/ChatBot';
 
 const HomePage = () => {
     return (
@@ -180,6 +181,7 @@ const HomePage = () => {
                 </section>
             </main>
 
+            <ChatBot/>
         </div>
     );
 };
