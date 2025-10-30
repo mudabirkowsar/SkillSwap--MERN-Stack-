@@ -6,6 +6,7 @@ const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [options, setOptions] = useState([]);
+  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const ChatBot = () => {
 
   const startConversation = () => {
     const introMessages = [
-      { sender: "bot", text: "👋 Hi there! I’m SkillBot." },
+      { sender: "bot", text: "👋 Hi there! I’m <b>SkillBot</b>." },
       { sender: "bot", text: "💡 I can help you find a mentor or swap your skills." },
       { sender: "bot", text: "🤔 What would you like to do today?" },
     ];
@@ -35,7 +36,7 @@ const ChatBot = () => {
         if (i === introMessages.length - 1) {
           setOptions(["Find a Mentor", "Offer a Skill", "Learn More"]);
         }
-      }, (i + 1) * 1000);
+      }, (i + 1) * 900);
     });
   };
 
@@ -44,10 +45,12 @@ const ChatBot = () => {
   };
 
   const botSequence = (botMessages) => {
+    setIsTyping(true);
     botMessages.forEach((text, i) => {
       setTimeout(() => {
         setMessages((prev) => [...prev, { id: Date.now() + i, sender: "bot", text }]);
-      }, (i + 1) * 1000);
+        if (i === botMessages.length - 1) setIsTyping(false);
+      }, (i + 1) * 900);
     });
   };
 
@@ -56,7 +59,17 @@ const ChatBot = () => {
       {isOpen && (
         <div className="chat-window">
           <div className="chat-header">
-            <span className="chat-title">SkillBot Assistant</span>
+            <div className="chat-header-info">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png"
+                alt="bot-avatar"
+                className="bot-avatar-header"
+              />
+              <div>
+                <div className="chat-title">SkillBot Assistant</div>
+                <div className="chat-subtitle">Online • Ready to help</div>
+              </div>
+            </div>
             <button className="close-btn" onClick={() => setIsOpen(false)}>
               <i className="fas fa-times"></i>
             </button>
@@ -64,10 +77,31 @@ const ChatBot = () => {
 
           <div className="chat-messages">
             {messages.map((msg) => (
-              <div key={msg.id} className={`message-bubble ${msg.sender}`}>
-                <p>{msg.text}</p>
+              <div
+                key={msg.id}
+                className={`message-wrapper ${msg.sender}`}
+              >
+                {msg.sender === "bot" && (
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png"
+                    alt="bot-avatar"
+                    className="bot-avatar"
+                  />
+                )}
+                <div
+                  className={`message-bubble ${msg.sender}`}
+                  dangerouslySetInnerHTML={{ __html: msg.text }}
+                />
               </div>
             ))}
+
+            {isTyping && (
+              <div className="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            )}
 
             {options.length > 0 && (
               <div className="options">
@@ -75,7 +109,13 @@ const ChatBot = () => {
                   <button
                     key={i}
                     onClick={() =>
-                      handleOptionSelect(opt, setOptions, addUserMessage, botSequence, startConversation)
+                      handleOptionSelect(
+                        opt,
+                        setOptions,
+                        addUserMessage,
+                        botSequence,
+                        startConversation
+                      )
                     }
                   >
                     {opt}
@@ -88,12 +128,16 @@ const ChatBot = () => {
         </div>
       )}
 
-      {/* Chat Toggle Button */}
+      {/* Floating Chat Toggle Button */}
       <button
         className={`chat-toggle-btn ${isOpen ? "is-open" : ""}`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? <i className="fas fa-times"></i> : <i className="fas fa-comment-dots"></i>}
+        {isOpen ? (
+          <i className="fas fa-times"></i>
+        ) : (
+          <i className="fas fa-comment-dots"></i>
+        )}
       </button>
     </div>
   );

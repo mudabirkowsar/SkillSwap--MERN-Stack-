@@ -6,31 +6,40 @@
   font-family: "Inter", sans-serif;
 }
 
+/* Floating Chat Button */
 .chat-toggle-btn {
-  width: 60px;
-  height: 60px;
+  width: 62px;
+  height: 62px;
   border-radius: 50%;
   border: none;
   background: linear-gradient(135deg, #4f46e5, #6366f1);
   color: white;
-  font-size: 1.4rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  font-size: 1.6rem;
+  box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
   cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.chat-toggle-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.65);
+}
+
+/* Chat Window */
 .chat-window {
   position: absolute;
   bottom: 80px;
   right: 0;
-  width: 360px;
-  height: 500px;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  width: 370px;
+  height: 520px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  animation: fadeInUp 0.3s ease-out;
+  animation: fadeInUp 0.35s ease-out;
+  border: 1px solid #e5e7eb;
 }
 
 @keyframes fadeInUp {
@@ -44,6 +53,7 @@
   }
 }
 
+/* Header */
 .chat-header {
   background: linear-gradient(135deg, #4f46e5, #6366f1);
   color: white;
@@ -54,44 +64,132 @@
   font-weight: 600;
 }
 
+.chat-header-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bot-avatar-header {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: white;
+  padding: 5px;
+}
+
+.chat-title {
+  font-size: 1rem;
+}
+
+.chat-subtitle {
+  font-size: 0.75rem;
+  color: #e0e7ff;
+  font-weight: 400;
+}
+
+/* Messages */
 .chat-messages {
   flex-grow: 1;
-  padding: 10px;
+  padding: 12px;
   overflow-y: auto;
   background: #f9fafb;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
+  scrollbar-width: thin;
 }
 
-/* Smaller padding in bubbles */
+.message-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-wrapper.user {
+  justify-content: flex-end;
+}
+
 .message-bubble {
-  max-width: 80%;
-  padding: 6px 10px;
-  border-radius: 15px;
-  font-size: 0.9rem;
-  word-wrap: break-word;
+  max-width: 75%;
+  padding: 8px 12px;
+  border-radius: 18px;
+  font-size: 0.92rem;
+  line-height: 1.3rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
 }
 
 .message-bubble.bot {
   background: #e0f2fe;
   color: #1e293b;
-  align-self: flex-start;
 }
 
 .message-bubble.user {
   background: linear-gradient(135deg, #4f46e5, #6366f1);
   color: white;
-  align-self: flex-end;
+  border-bottom-right-radius: 4px;
 }
 
-/* Options Section */
+.bot-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 36px;
+  margin-top: 4px;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  background: #c7d2fe;
+  border-radius: 50%;
+  animation: blink 1.4s infinite both;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0%, 80%, 100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+/* Options */
 .options {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 .options button {
@@ -99,12 +197,27 @@
   border: 1px solid #c7d2fe;
   color: #3730a3;
   border-radius: 20px;
-  padding: 6px 12px;
+  padding: 6px 14px;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.25s ease;
 }
 
 .options button:hover {
   background: #c7d2fe;
+  transform: translateY(-2px);
+}
+
+/* Close Button */
+.close-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: scale(1.1);
 }
