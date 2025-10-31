@@ -1,5 +1,3 @@
-// src/botLogic.js
-
 export const handleOptionSelect = (
     option,
     setOptions,
@@ -187,7 +185,7 @@ export const handleOptionSelect = (
     // 🔹 SUCCESS STORIES
     if (option === "Success Stories 🌟") {
         botSequence([
-            iconMsg("https://cdn-icons-png.flaticon.com/512/3135/3135684.png", "💬 Riya learned Web Design in 3 months by teaching Spanish!"),
+            iconMsg("https://cdn-icons-png.flaticon.com/512/3135/3135684.png", "💬 Mudabir learned Web Design in 3 months by teaching Spanish!"),
             "💬 Aman exchanged Cooking lessons for Guitar sessions 🎸",
             "Would you like to start your own SkillSwap journey?"
         ]);

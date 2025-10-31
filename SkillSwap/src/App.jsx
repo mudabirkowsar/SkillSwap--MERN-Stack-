@@ -15,6 +15,7 @@ import LoginPage from './pages/auth/LoginPage';
 import SignupPage from './pages/auth/SignupPage';
 import NotificationPage from './pages/notification/NotificationPage';
 import SkillDetailPage from './pages/skillDetail/SkillDetailPage';
+import CollaborationPage from './pages/collaboration/CollaborationPage';
 
 // Note: In a real-world app, you would wrap the Logged-In routes 
 // with a ProtectedRoute component to enforce authentication.
@@ -67,7 +68,8 @@ export default function App() {
             <Route path="/my-swaps" element={<MySwapsPage />} />
             <Route path="/my-profile" element={<ProfilePage />} />
             <Route path="/settings" element={<ProfilePage />} />
-            <Route path='/notifications' element={<NotificationPage />} />
+            <Route path="/notifications" element={<NotificationPage />} />
+            <Route path="/collaborations" element={<CollaborationPage />} />
 
             {/* Fallback/404 Route */}
             <Route path="*" element={<h1 style={{ textAlign: 'center', marginTop: '50px' }}>404 Page Not Found</h1>} />

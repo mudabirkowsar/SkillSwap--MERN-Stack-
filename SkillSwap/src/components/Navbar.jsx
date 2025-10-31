@@ -39,6 +39,9 @@ const Navbar = ({ isLoggedIn, onLogout, onLogin }) => {
                             <Link to="/my-swaps" className={linkClasses('/my-swaps')}>
                                 My Swaps
                             </Link>
+                            <Link to="/collaborations" className={linkClasses('/collaborations')}>
+                                Collaborations
+                            </Link>
                             {/* Notifications Icon (functional placeholder) */}
                             <Link to="/notifications">
                             <div className="notifications-icon-container">
