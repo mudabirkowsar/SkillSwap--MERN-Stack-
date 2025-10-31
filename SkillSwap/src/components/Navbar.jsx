@@ -4,7 +4,7 @@ import './Navbar.css';
 import UserDropdown from './UserDropdown';
 
 const Navbar = ({ isLoggedIn, onLogout, onLogin }) => {
-    const location = useLocation(); // Hook to get the current URL path
+    const location = useLocation(); 
     const navigate = useNavigate();
 
     // Function to apply active class based on the current path
