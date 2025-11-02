@@ -8,6 +8,7 @@ const SignupPage = ({ onSignup }) => {
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -32,22 +33,27 @@ const SignupPage = ({ onSignup }) => {
     }
 
     try {
+      setLoading(true); // ✅ Start loading
       const data = await registerUser(formData);
       localStorage.setItem("userInfo", JSON.stringify(data));
-      // Show Toast Notification 🎉
+
+      // ✅ Toast Notification
       setShowToast(true);
       setTimeout(() => setShowToast(false), 3000);
+
       onSignup();
       setTimeout(() => navigate("/find-skills"), 1200);
       console.log("Signup successful");
     } catch (error) {
-      console.log("Error while signup ")
+      console.log("Error while signup", error);
+      alert("❌ Signup failed! Please try again.");
+    } finally {
+      setLoading(false); // ✅ Stop loading
     }
   };
 
   return (
     <div className="signup-wrapper">
-
       {/* ✅ Toast Notification */}
       {showToast && (
         <div className="toast-success">
@@ -115,7 +121,15 @@ const SignupPage = ({ onSignup }) => {
           ></i>
         </div>
 
-        <button className="signup-btn" type="submit">Sign Up</button>
+        <button className={`signup-btn ${loading ? "loading" : ""}`} type="submit" disabled={loading}>
+          {loading ? (
+            <>
+              <div className="spinner"></div> Signing Up...
+            </>
+          ) : (
+            "Sign Up"
+          )}
+        </button>
 
         <p className="login-text">
           Already have an account?
