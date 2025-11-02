@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-// Import necessary React Router DOM components
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
-// Import all separate page components
 import HomePage from './pages/HomePage';
 import HowItWorksPage from './pages/HowItWorksPage';
 import SearchPage from './pages/SearchPage';
@@ -17,28 +15,47 @@ import NotificationPage from './pages/notification/NotificationPage';
 import SkillDetailPage from './pages/skillDetail/SkillDetailPage';
 import CollaborationPage from './pages/collaboration/CollaborationPage';
 
-// Note: In a real-world app, you would wrap the Logged-In routes 
-// with a ProtectedRoute component to enforce authentication.
-
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // ✅ Automatically check login status from localStorage when the app loads
+  useEffect(() => {
+    const userInfo = localStorage.getItem("userInfo");
+    if (userInfo) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+  // ✅ Optionally: listen to changes in localStorage (e.g., user logs out from another tab)
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const userInfo = localStorage.getItem("userInfo");
+      setIsLoggedIn(!!userInfo);
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
 
   const handleLogout = () => {
+    localStorage.removeItem("userInfo");
     setIsLoggedIn(false);
   };
 
   const handleSignup = () => {
     setIsLoggedIn(true);
-  }
+  };
 
   return (
     <BrowserRouter>
       <div className="app-container">
-        {/* Navbar is rendered on all routes */}
+        {/* Navbar visible on all routes */}
         <Navbar
           isLoggedIn={isLoggedIn}
           onLogout={handleLogout}
@@ -47,19 +64,16 @@ export default function App() {
         <main className="main-content">
           <Routes>
             {/* --- Public Routes --- */}
-            {/* The main landing page, needs the login handler */}
             <Route path="/" element={<HomePage onLogin={handleLogin} />} />
             <Route path="/how-it-works" element={<HowItWorksPage />} />
-            {/* Public preview of the marketplace */}
             <Route path="/browse-skills" element={<SearchPage />} />
-
             <Route path="/skills/:skillId" element={<SkillDetailPage />} />
 
-            {/* auth routes  */}
-            <Route path='/login' element={<LoginPage onLogin={handleLogin} />} />
-            <Route path='/signup' element={<SignupPage onSignup={handleSignup} />} />
+            {/* --- Auth Routes --- */}
+            <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+            <Route path="/signup" element={<SignupPage onSignup={handleSignup} />} />
 
-            {/* --- Logged-In Routes (The actual application) --- */}
+            {/* --- Protected Routes (optional to restrict later) --- */}
             <Route path="/find-skills" element={<SearchPage />} />
             <Route path="/my-swaps" element={<MySwapsPage />} />
             <Route path="/my-profile" element={<ProfilePage />} />
@@ -67,8 +81,15 @@ export default function App() {
             <Route path="/notifications" element={<NotificationPage />} />
             <Route path="/collaborations" element={<CollaborationPage />} />
 
-            {/* Fallback/404 Route */}
-            <Route path="*" element={<h1 style={{ textAlign: 'center', marginTop: '50px' }}>404 Page Not Found</h1>} />
+            {/* --- 404 Fallback --- */}
+            <Route
+              path="*"
+              element={
+                <h1 style={{ textAlign: 'center', marginTop: '50px' }}>
+                  404 Page Not Found
+                </h1>
+              }
+            />
           </Routes>
         </main>
         <Footer />

@@ -34,12 +34,12 @@ const LoginPage = ({ onLogin }) => {
       setLoading(true); // ✅ Start loading
       const data = await loginUser({ email, password });
       localStorage.setItem("userInfo", JSON.stringify(data));
-      showMessage("✅ Login Successful!", "success");
+      showMessage("Login Successful!", "success");
       onLogin();
       setTimeout(() => navigate("/find-skills"), 1200);
     } catch (error) {
       console.log("Error while logging in", error);
-      showMessage("❌ Login failed! Please try again.", "error");
+      showMessage("Login failed! Please try again.", "error");
     } finally {
       setLoading(false); // ✅ Stop loading
     }
