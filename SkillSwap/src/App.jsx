@@ -53,13 +53,9 @@ export default function App() {
             {/* Public preview of the marketplace */}
             <Route path="/browse-skills" element={<SearchPage />} />
 
-            <Route
-              path="/skills/:skillId"
-              element={<SkillDetailPage />}
-            />
+            <Route path="/skills/:skillId" element={<SkillDetailPage />} />
 
             {/* auth routes  */}
-
             <Route path='/login' element={<LoginPage onLogin={handleLogin} />} />
             <Route path='/signup' element={<SignupPage onSignup={handleSignup} />} />
 

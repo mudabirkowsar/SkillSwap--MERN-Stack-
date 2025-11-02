@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SignupPage.css";
+import { registerUser } from "../../api/authApis";
 
 const SignupPage = ({ onSignup }) => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const SignupPage = ({ onSignup }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
@@ -30,13 +31,18 @@ const SignupPage = ({ onSignup }) => {
       return alert("❌ Password and Confirm Password do not match!");
     }
 
-
-    // Show Toast Notification 🎉
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 3000);
-
-    onSignup();
-    setTimeout(() => navigate("/find-skills"), 1200); 
+    try {
+      const data = await registerUser(formData);
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      // Show Toast Notification 🎉
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
+      onSignup();
+      setTimeout(() => navigate("/find-skills"), 1200);
+      console.log("Signup successful");
+    } catch (error) {
+      console.log("Error while signup ")
+    }
   };
 
   return (
@@ -55,10 +61,10 @@ const SignupPage = ({ onSignup }) => {
 
         <div className="input-group">
           <i className="fas fa-user input-icon"></i>
-          <input 
-            type="text" 
+          <input
+            type="text"
             name="name"
-            placeholder="Full Name" 
+            placeholder="Full Name"
             value={formData.name}
             onChange={handleInput}
             required
@@ -67,10 +73,10 @@ const SignupPage = ({ onSignup }) => {
 
         <div className="input-group">
           <i className="fas fa-envelope input-icon"></i>
-          <input 
-            type="email" 
+          <input
+            type="email"
             name="email"
-            placeholder="Email Address" 
+            placeholder="Email Address"
             value={formData.email}
             onChange={handleInput}
             required
@@ -79,15 +85,15 @@ const SignupPage = ({ onSignup }) => {
 
         <div className="input-group">
           <i className="fas fa-lock input-icon"></i>
-          <input 
+          <input
             type={showPass ? "text" : "password"}
             name="password"
-            placeholder="Password" 
+            placeholder="Password"
             value={formData.password}
             onChange={handleInput}
             required
           />
-          <i 
+          <i
             className={`fas ${showPass ? "fa-eye-slash" : "fa-eye"} password-toggle`}
             onClick={() => setShowPass(!showPass)}
           ></i>
@@ -95,7 +101,7 @@ const SignupPage = ({ onSignup }) => {
 
         <div className="input-group">
           <i className="fas fa-lock input-icon"></i>
-          <input 
+          <input
             type={showConfirmPass ? "text" : "password"}
             name="confirmPassword"
             placeholder="Confirm Password"
@@ -103,7 +109,7 @@ const SignupPage = ({ onSignup }) => {
             onChange={handleInput}
             required
           />
-          <i 
+          <i
             className={`fas ${showConfirmPass ? "fa-eye-slash" : "fa-eye"} password-toggle`}
             onClick={() => setShowConfirmPass(!showConfirmPass)}
           ></i>
@@ -112,7 +118,7 @@ const SignupPage = ({ onSignup }) => {
         <button className="signup-btn" type="submit">Sign Up</button>
 
         <p className="login-text">
-          Already have an account? 
+          Already have an account?
           <span onClick={() => navigate("/login")}> Login</span>
         </p>
       </form>
