@@ -29,7 +29,7 @@ const SignupPage = ({ onSignup }) => {
     }
 
     if (formData.password !== formData.confirmPassword) {
-      return alert("❌ Password and Confirm Password do not match!");
+      return alert("Password and Confirm Password do not match!");
     }
 
     try {

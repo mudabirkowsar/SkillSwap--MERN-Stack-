@@ -36,11 +36,11 @@
 
 .input-group input {
   width: 100%;
-  padding: 12px 38px 12px 38px; /* Reduced padding so box doesn't overflow */
+  padding: 12px 38px 12px 38px;
   border-radius: 8px;
   border: 1px solid #d1d5db;
   font-size: 15.5px;
-  box-sizing: border-box; /* Ensures input stays within container */
+  box-sizing: border-box;
   transition: border-color 0.2s;
   background-color: #f9fafb;
 }
@@ -94,9 +94,40 @@
   transition: background-color 0.25s;
   cursor: pointer;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-.login-btn:hover {
+/* ✅ Spinner animation */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid white;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ✅ Loading button state */
+.login-btn.loading {
+  background-color: #7c83ff;
+  cursor: not-allowed;
+}
+
+.login-btn:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.login-btn:hover:not(:disabled) {
   background-color: #4338ca;
 }
 
@@ -116,10 +147,9 @@
   text-decoration: underline;
 }
 
-
-/* Notification Popup */
+/* ✅ Notification Popup */
 .notification-box {
-   position: fixed;
+  position: fixed;
   top: 120px;
   background: #10b981;
   color: white;
@@ -131,7 +161,7 @@
   font-weight: 600;
   font-size: 15px;
   animation: fadeInOut 3s ease forwards;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   z-index: 9999;
 }
 
@@ -141,11 +171,27 @@
 
 .notification-box.error {
   border-left: 6px solid #ef4444;
+  background: #ef4444;
 }
 
 @keyframes fadeInOut {
-  0% { opacity: 0; transform: translateX(30px); }
-  10% { opacity: 1; transform: translateX(0); }
-  90% { opacity: 1; transform: translateX(0); }
-  100% { opacity: 0; transform: translateX(30px); }
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
 }
